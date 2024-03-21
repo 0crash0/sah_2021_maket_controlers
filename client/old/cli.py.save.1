@@ -1,0 +1,48 @@
+#!/usr/bin/python3  
+import http.client
+import time
+import wiringpi as wp
+import json
+from array import array
+
+btnP =      array('i', [7,    1,    0,    2,    4,    3,    5,    6,    26,   23,   24,   27,   25,   28,   29])
+btnlststt = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+
+        
+def raspberrypi_init():
+    try:
+        wp.wiringPiSetup()
+        for i in range(15):
+            wp.pinMode(btnP[i], wp.INPUT)
+            wp.pullUpDnControl(btnP[i],wp.PUD_UP)
+    except:
+        pass
+
+
+connection = http.client.HTTPConnection("192.168.1.1:8000", timeout=20)
+
+
+raspberrypi_init()
+#cntr_recv=0
+while (True):
+#    if(cntr_recv==0):
+#        connection.request('GET', '/getparams')
+#        response = connection.getresponse()
+#        print(response.read().decode())
+    for i in range(15):
+        readed=wp.digitalRead(btnP[i])
+        if (btnlststt[i] != readed):
+            getpg='on'if readed else 'off'
+            connection.request('GET', '/' + str(i+1) +getpg)
+            response = connection.getresponse()
+            print(wp.digitalRead(btnP[i]),(btnP[i]),i)
+            btnlststt[i]=wp.digitalRead(btnP[i])
+            print('on'if readed else 'off')
+
+    time.sleep(bash: n: command not found
+)
+    print("-----------------------------------------------------")
+#    cntr_recv=cntr_recv+1
+#    if(cntr_recv==11):
+#        cntr_recv=0
+    

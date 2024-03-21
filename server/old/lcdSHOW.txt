@@ -1,0 +1,2 @@
+
+sudo ./LCD35-HDMI-480x320-show 180

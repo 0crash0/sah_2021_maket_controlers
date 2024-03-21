@@ -1,0 +1,17 @@
+[Unit]
+  Wants=systemd-user-sessions.service
+  Before=systemd-user-sessions.service
+
+[Service]
+  ExecStart=/usr/bin/omxplayer /home/pi/bf.mp4 --loop -o hdmi --no-osd
+  Type=idle
+  KillMode=process
+ 
+  SyslogIdentifier=smart-test
+  SyslogFacility=daemon
+  
+  Restart=always 
+  RestartSec=5s
+[Install]
+  WantedBy=default.target
+

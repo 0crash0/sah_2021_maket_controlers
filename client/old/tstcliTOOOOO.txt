@@ -1,0 +1,21 @@
+
+a_dict = {'/1on':1, '/2on':2, '/3on':3,'/4on':4, '/5on':5, '/6on':6,'/7on':7, '/8on':8, '/9on':9,'/10on':10, '/11on':11, '/12on':12, '/13on':13, '/14on':14,'/15on':15}
+keys = a_dict.keys()
+keys = sorted(keys)
+
+for key in keys :
+    connection.request('GET', key)
+    response = connection.getresponse()
+    print(key)
+    time.sleep(0.5)
+
+a_dict = {"/1off":1, "/2off":2, "/3off":3,"/4off":4, "/5off":5, "/6off":6,"/7off":7, "/8off":8, "/9off":9,"/10off":10, "/11off":11, "/12off":12, "/13off":13, "/14off":14,"/15off":15}
+keys = a_dict.keys()
+keys = sorted(keys)
+ 
+for key in a_dict:
+    connection.request('GET', key)
+    response = connection.getresponse()
+    print(key)
+    time.sleep(0.5)	
+

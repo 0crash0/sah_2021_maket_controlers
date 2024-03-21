@@ -1,0 +1,17 @@
+git clone https://github.com/WiringPi/WiringPi.git
+sudo ./build
+
+
+
+
+
+git clone https://github.com/itc-lab/wiringpi-php7.git
+apt-get install php-dev
+phpize
+./configure
+make
+make install
+
+sudo adduser www-data i2c
+sudo adduser www-data spi
+sudo adduser www-data gpio

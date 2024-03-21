@@ -1,0 +1,42 @@
+sudo apt-get -y install lighttpd
+sudo apt-get -y install php5-common php5-cgi php5
+sudo lighty-enable-mod fastcgi-php #Enable the Fastcgi module which will handle the PHP pages
+sudo service lighttpd force-reload #restart the Lighttpd service
+
+sudo chown www-data:www-data /var/www
+
+sudo chmod 775 /var/www #permission to write to this directory
+
+sudo usermod -a -G www-data pi #add the “Pi” user to the “www-data” group
+
+sudo adduser www-data i2c
+sudo adduser www-data spi
+sudo adduser www-data gpio
+
+
+
+
+sudo apt-get install python3-dev python3-rpi.gpio python3-pip
+
+
+python3 serv.py
+
+
+sudo nano /etc/systemd/system/rpi.PYserv.service
+
+sudo systemctl daemon-reload
+sudo systemctl enable pyserv.service
+sudo systemctl enable video.service
+sudo systemctl start pyserv.service
+sudo systemctl start video.service
+
+
+
+sudo pkill -f serv1.py
+
+sudo chmod 644 /etc/systemd/system/cli.service
+sudo chmod 744 /home/pi/cli.py
+
+sudo systemctl daemon-reload
+sudo systemctl enable cli.service
+sudo systemctl start cli.service
